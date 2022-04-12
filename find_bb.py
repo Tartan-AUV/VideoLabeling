@@ -144,4 +144,25 @@ if __name__ == "__main__":
         elif key == 27: # esc
             points.clear()
         elif key > -1 and key < 128 and chr(key).isalnum():
-            current_class = chr(key)
+            if chr(key) == '0':
+                current_class = 'gman'
+            elif chr(key) == '1':
+                current_class = 'bootlegger'
+            elif chr(key) == '2':
+                current_class = 'badge'
+            elif chr(key) == '3':
+                current_class = 'gun'
+            elif chr(key) == '4':
+                current_class = 'bottle'
+            elif chr(key) == '5':
+                current_class = 'barrel'
+            elif chr(key) == '6':
+                current_class = 'phone'
+            elif chr(key) == '7':
+                current_class = 'notebook'
+            elif chr(key) == '8':
+                current_class = 'gman-target'
+            elif chr(key) == '9':
+                current_class = 'bootlegger-target'
+            else:
+                current_class = chr(key)

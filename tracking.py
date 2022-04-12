@@ -90,13 +90,13 @@ WINDOW_SCALE = args.window_scale
 # Make a bunch of trackers because I don't trust the opencv one
 tracker_fns = [
         cv2.TrackerKCF_create,
-        cv2.TrackerBoosting_create,
+        # cv2.TrackerBoosting_create,
         cv2.TrackerCSRT_create,
         cv2.TrackerGOTURN_create,
         cv2.TrackerMIL_create,
-        cv2.TrackerMOSSE_create,
-        cv2.TrackerMedianFlow_create,
-        cv2.TrackerTLD_create,
+        # cv2.TrackerMOSSE_create,
+        # cv2.TrackerMedianFlow_create,
+        # cv2.TrackerTLD_create,
 ]
 
 
@@ -146,16 +146,14 @@ def init_trackers(tracker_index, frame, bboxes):
 
     trackers = []
     tracker_fn = tracker_fns[tracker_index]
-
+    
     for i, bbox in enumerate(bboxes):
+        
         tracker = tracker_fn()
-        ret = tracker.init(frame, tuple(bbox))
-        if not ret:
-            print("Unable to initialize tracker", i)
-            continue
-        else:
-            print("Successfully initialized tracker", i)
-            trackers.append(tracker)
+        ret = tracker.init(frame, (tuple(map(int, bbox))))
+        print(ret)
+        print("Successfully initialized tracker", i)
+        trackers.append(tracker)
 
     return trackers
 
@@ -173,11 +171,11 @@ def save_frame(orig, frame, bboxes, classes, run_name, frame_count):
 
     if args.experiment:
         return
-
-    cv2.imwrite(os.path.join(run_name, "%05d.png" % frame_count), orig)
-    cv2.imwrite(os.path.join(run_name, "rect_%05d.png" % frame_count), frame)
+    cv2.imwrite(os.path.join(run_name, "{}_{:05d}.png".format(video_name, frame_count)), orig)
+    # cv2.imwrite(os.path.join(run_name, "%05d.png" % frame_count), orig)
+    # cv2.imwrite(os.path.join(run_name, "rect_%05d.png" % frame_count), frame)
     bbox_writer.write_bboxes(bboxes, classes,
-            os.path.join(run_name, "%05d.txt" % frame_count))
+            os.path.join(run_name, "{}_{:05d}.txt".format(video_name, frame_count)))
 
 
 
@@ -444,6 +442,7 @@ def unscale_bbox_for_tracking(bbox):
 if __name__ == "__main__":
     bboxes, classes = get_scaled_bboxes(args.filename.name, args.scale)
     vid = open_vid(args.filename.name)
+    video_name,_ = os.path.splitext((os.path.basename(args.filename.name)))
 
     ret, frame = vid.read()
     verify_bboxes(frame, bboxes, classes, args.yes)
@@ -451,6 +450,7 @@ if __name__ == "__main__":
     tracker_index = args.tracker
     tracker_fn = tracker_fns[tracker_index]
     tracker_name = tracker_fn.__name__.split("_")[0]
+    print(tracker_name)
 
     trackers = init_trackers(tracker_index, frame, bboxes)
 
