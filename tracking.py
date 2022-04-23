@@ -134,10 +134,10 @@ def verify_bboxes(frame, bboxes, classes, yes):
        return
 
     # Confirm sanity check
-    key = cv2.waitKey(0) & 0xFF
-    if key == ord('n'):
-        print("Poor bounding boxes. Quitting!")
-        sys.exit()
+    # key = cv2.waitKey(0) & 0xFF
+    # if key == ord('n'):
+    #     print("Poor bounding boxes. Quitting!")
+    #     sys.exit()
 
 
 def init_trackers(tracker_index, frame, bboxes):
