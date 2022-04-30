@@ -13,7 +13,7 @@ parser = argparse.ArgumentParser(
         description=description_text,
         formatter_class=argparse.RawDescriptionHelpFormatter)
 parser.add_argument("config_file",type=argparse.FileType("r"),
-        help="path to yaml config file folder")
+        help="path to yaml file")
 parser.add_argument("input", 
         help="path to input folder containing videos")
 parser.add_argument("output", 

@@ -1,0 +1,8 @@
+badge
+bottle
+barrel
+phone
+notebook
+gman-target
+bootlegger-target
+gun
