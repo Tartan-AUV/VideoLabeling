@@ -67,6 +67,7 @@ WINDOW_SCALE = 0.5
 
 def show_scaled(window, frame, sf=WINDOW_SCALE):
     cv2.imshow(window, cv2.resize(frame, (0, 0), fx=sf, fy=sf))
+    cv2.setWindowProperty(window, cv2.WND_PROP_TOPMOST, 1)
 
 # Make sure all bboxes are given as top left (x, y), and (dx, dy). Sometimes
 # they may be specified by a different corner, so we need to reverse that.
@@ -111,14 +112,6 @@ def mouse_callback(event, x, y, flags, params):
         classes.append(cls)
         points.clear()
 
-        # Write the bboxes out to file.
-        # We get the filename itself, not the full path.
-        filename = args.filename.name
-        bbox_filename = bbox_writer.get_bbox_filename(filename)
-        bbox_path = os.path.join(os.path.dirname(filename), bbox_filename)
-        bbox_writer.write_bboxes(bboxes, classes, bbox_path)
-        print("Wrote bboxes to file:", bbox_path)
-
     drawing_utils.draw_bboxes(im, bboxes, classes)
 
     cv2.putText(im, "Current class: %s" % current_class, (100,20),
@@ -126,6 +119,23 @@ def mouse_callback(event, x, y, flags, params):
 
     show_scaled(window, im)
 
+def write_bbox_callback():
+    # Write the bboxes out to file.
+    # We get the filename itself, not the full path.
+    filename = args.filename.name
+    bbox_filename = bbox_writer.get_bbox_filename(filename)
+    bbox_path = os.path.join(os.path.dirname(filename), bbox_filename)
+    bbox_writer.write_bboxes(bboxes, classes, bbox_path)
+
+    print("Wrote bboxes to file:", bbox_path)
+
+def clear_bbox_callback():
+    global points, bboxes, classes, current_class
+    
+    points = []
+    bboxes = []
+    classes = []
+    current_class = None
 
 if __name__ == "__main__":
 
@@ -140,7 +150,10 @@ if __name__ == "__main__":
     while True:
         key = cv2.waitKey(1) & 0xFF
         if key == ord('q'):
+            write_bbox_callback()
             break
+        elif key == ord('n'):
+            clear_bbox_callback()
         elif key == 27: # esc
             points.clear()
         elif key > -1 and key < 128 and chr(key).isalnum():

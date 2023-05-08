@@ -22,7 +22,7 @@ args = parser.parse_args()
 if __name__ == "__main__":
     allFiles = [f for f in os.listdir(args.input) if (os.path.isfile(os.path.join(args.input, f)) and not f.startswith('.'))]
     allFiles = sorted(allFiles)
-    allPeople = ['Sam', 'Theo', 'Katia', 'Sarah', 'Akshay', 'John', 'Micah', 'Rylan']
+    allPeople = ['Sam', 'Theo', 'Katia', 'Sarah', 'John', 'Micah', 'Rylan']
     random.shuffle(allPeople)
     multiplier = (len(allFiles) // len(allPeople)) + 1 
     allPeople = allPeople * multiplier
