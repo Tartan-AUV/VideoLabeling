@@ -157,25 +157,41 @@ if __name__ == "__main__":
         elif key == 27: # esc
             points.clear()
         elif key > -1 and key < 128 and chr(key).isalnum():
-            if chr(key) == '0':
-                current_class = 'gman'
-            elif chr(key) == '1':
-                current_class = 'bootlegger'
-            elif chr(key) == '2':
-                current_class = 'badge'
-            elif chr(key) == '3':
-                current_class = 'gun'
-            elif chr(key) == '4':
-                current_class = 'bottle'
-            elif chr(key) == '5':
-                current_class = 'barrel'
-            elif chr(key) == '6':
-                current_class = 'phone'
-            elif chr(key) == '7':
-                current_class = 'notebook'
-            elif chr(key) == '8':
-                current_class = 'gman-target'
-            elif chr(key) == '9':
-                current_class = 'bootlegger-target'
+            if chr(key) == 'a':
+                current_class = 'torpedo_closed'
+            elif chr(key) == 'b':
+                current_class = 'torpedo_open'
+            elif chr(key) == 'c':
+                current_class = 'bin_earth_1'
+            elif chr(key) == 'd':
+                current_class = 'bin_earth_2'
+            elif chr(key) == 'e':
+                current_class = 'bin_abydos_1'
+            elif chr(key) == 'f':
+                current_class = 'bin_abydos_2'
+            elif chr(key) == 'g':
+                current_class = 'buoy_abydos_1'
+            elif chr(key) == 'h':
+                current_class = 'buoy_abydos_2'
+            elif chr(key) == 'i':
+                current_class = 'buoy_earth_1'
+            elif chr(key) == 'j':
+                current_class = 'buoy_earth_2'
+            elif chr(key) == 'k':
+                current_class = 'table_earth_1'
+            elif chr(key) == 'l':
+                current_class = 'table_earth_2'
+            elif chr(key) == 'm':
+                current_class = 'table_earth_3'
+            elif chr(key) == 'o':
+                current_class = 'table_earth_4'
+            elif chr(key) == 'p':
+                current_class = 'table_abydos_1'
+            elif chr(key) == 'r':
+                current_class = 'table_abydos_2'
+            elif chr(key) == 's':
+                current_class = 'table_abydos_3'
+            elif chr(key) == 't':
+                current_class = 'table_abydos_4'
             else:
                 current_class = chr(key)

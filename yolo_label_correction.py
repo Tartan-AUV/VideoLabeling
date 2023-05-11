@@ -10,15 +10,15 @@ parser = argparse.ArgumentParser(
         )
 
 parser.add_argument("input", help="path to input folder containing videos")
+parser.add_argument("width")
+parser.add_argument("height")
 
 args = parser.parse_args()
 
-def fix_labels(data_fpath):
+def fix_labels(data_fpath, width, height):
     data_fpath_yolo = f"{data_fpath}/yolo-labels-{time.time()}"
     os.mkdir(data_fpath_yolo)
         
-    width, height = 1280, 720
-
     data_classes_tmp = open("data_classes.txt", "r").read().splitlines()
     data_classes = {}
 
@@ -29,13 +29,15 @@ def fix_labels(data_fpath):
 
     for file in os.listdir(data_fpath):
         if file.endswith(".txt"):
+            print(file)
             with codecs.open(f"{data_fpath}/{file}", 'r', encoding='utf-8',
                              errors='ignore') as fdata:
                 data = fdata.read().splitlines()
                 data_clean = []
 
                 for line in data:
-                    if bool(re.match('^[a-zA-Z0-9\,\.]+$', line)) and line != "":
+                    print(line)
+                    if bool(re.match('^[a-zA-Z0-9\,\.\_]+$', line)) and line != "":
                         data_clean.append(line)
             
             fdata.close()
@@ -63,6 +65,8 @@ def fix_labels(data_fpath):
                     new_obs = [int(data_class), x_center, y_center, bb_width, bb_height]
                     new_obss.append(new_obs)
 
+                print(new_obss)
+
                 with codecs.open(f"{data_fpath_yolo}/{file}", 'w', encoding='utf-8',
                                 errors='ignore') as fdata:
                     for obs in range(len(new_obss)):
@@ -73,12 +77,12 @@ def fix_labels(data_fpath):
                             fdata.write(f_line.strip() + "\n")
                         else:
                             fdata.write(f_line.strip())
-            # except ValueError as e:
-            #     print(f"Error: {e} in file {file}! Continuing...")
+            except ValueError as e:
+                print(f"Error: {e} in file {file}! Continuing...")
             except KeyError as e:
                 print(f"Error: {e}! No such class.")
             fdata.close()
 
 
 if __name__ == "__main__":
-    fix_labels(args.input)
+    fix_labels(args.input, args.width, args.height)

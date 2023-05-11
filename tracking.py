@@ -89,13 +89,13 @@ WINDOW_SCALE = args.window_scale
 
 # Make a bunch of trackers because I don't trust the opencv one
 tracker_fns = [
-        cv2.TrackerKCF_create,
+        # cv2.TrackerKCF_create,
         # cv2.TrackerBoosting_create,
         cv2.TrackerCSRT_create,
-        cv2.TrackerGOTURN_create,
-        cv2.TrackerMIL_create,
+        # cv2.TrackerGOTURN_create,
+        #cv2.TrackerMIL_create,
         # cv2.TrackerMOSSE_create,
-        # cv2.TrackerMedianFlow_create,
+        cv2.TrackerMedianFlow_create,
         # cv2.TrackerTLD_create,
 ]
 
@@ -279,11 +279,11 @@ def clamp_bboxes(bboxes, width, height):
         p1 = bbox[:2]
         p2 = p1 + bbox[2:]
 
-        p1[0] = np.clip(p1[0], 0, width)
-        p1[1] = np.clip(p1[1], 0, height)
+        p1[0] = np.clip(p1[0], 5, width - 5)
+        p1[1] = np.clip(p1[1], 5, height - 5)
 
-        p2[0] = np.clip(p2[0], 0, width)
-        p2[1] = np.clip(p2[1], 0, height)
+        p2[0] = np.clip(p2[0], 5, width - 5)
+        p2[1] = np.clip(p2[1], 5, height - 5)
 
         clamped_bbox = np.array([*p1, *(p2 - p1)])
         clamped_bboxes.append(clamped_bbox)

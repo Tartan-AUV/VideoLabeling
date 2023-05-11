@@ -5,6 +5,7 @@ import yaml
 import os 
 import copy
 import glob
+import datetime
 
 description_text = 'How to trim videos'
 
@@ -77,8 +78,8 @@ def trim_videos(video_file, timeline):
         all_targets = "_".join(elem[2])
         new_video_name = "{}_{}_{}.mp4".format(orig_video_name, i, all_targets)
         new_video_file = os.path.join(args.output, new_video_name)
-        trim_command = "ffmpeg -i {1} -ss 00:00:{0:02d} -to 00:00:{2:02d}   -async 1 {3} >/dev/null 2>&1".format(elem[0], video_file, elem[1], new_video_file)
-        # print(trim_command)
+        trim_command = "ffmpeg -i {1} -ss {0} -to {2} -async 1 {3}".format(str(datetime.timedelta(seconds=elem[0])), video_file, str(datetime.timedelta(seconds=elem[1])), new_video_file)
+        print(trim_command)
         os.system(trim_command)
             
 if __name__ == "__main__":

@@ -1,0 +1,42 @@
+torpedo_closed:
+        - [-1, -1]
+torpedo_open:
+        - [-1, -1]
+bin_earth_1:
+        - [-1, -1]
+bin_earth_2:
+        - [-1, -1]
+bin_abydos_1:
+        - [-1, -1]
+bin_abydos_2:
+        - [-1, -1]
+buoy_abydos_1:
+        - [-1, -1]
+buoy_abydos_2:
+        - [-1, -1]
+buoy_earth_1:
+        - [-1, -1]
+buoy_earth_2:
+        - [-1, -1]
+table_earth_1:
+        - [-1, -1]
+table_earth_2:
+        - [-1, -1]
+table_earth_3:
+        - [-1, -1]
+table_earth_4:
+        - [-1, -1]
+table_abydos_1:
+        - [-1, -1]
+table_abydos_2:
+        - [-1, -1]
+table_abydos_3:
+        - [-1, -1]
+table_abydos_4:
+        - [-1, -1]
+chevron_red:
+        - [-1, -1]
+chevron_blue:
+        - [-1, -1]
+bin_lid:
+        - [-1, -1]
