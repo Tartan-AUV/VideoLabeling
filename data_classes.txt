@@ -4,10 +4,10 @@ bin_earth_1
 bin_earth_2
 bin_abydos_1
 bin_abydos_2
-buoy_abydos_1
-buoy_abydos_2
 buoy_earth_1
 buoy_earth_2
+buoy_abydos_1
+buoy_abydos_2
 table_earth_1
 table_earth_2
 table_earth_3
@@ -16,6 +16,10 @@ table_abydos_1
 table_abydos_2
 table_abydos_3
 table_abydos_4
-chevron_red
-chevron_blue
+table
+chevron
+bin
 bin_lid
+gate
+gate_earth
+gate_abydos
