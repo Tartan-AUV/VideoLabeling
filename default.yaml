@@ -10,13 +10,13 @@ bin_abydos_1:
         - [-1, -1]
 bin_abydos_2:
         - [-1, -1]
-buoy_abydos_1:
-        - [-1, -1]
-buoy_abydos_2:
-        - [-1, -1]
 buoy_earth_1:
         - [-1, -1]
 buoy_earth_2:
+        - [-1, -1]
+buoy_abydos_1:
+        - [-1, -1]
+buoy_abydos_2:
         - [-1, -1]
 table_earth_1:
         - [-1, -1]
@@ -34,9 +34,17 @@ table_abydos_3:
         - [-1, -1]
 table_abydos_4:
         - [-1, -1]
-chevron_red:
+table:
         - [-1, -1]
-chevron_blue:
+chevron:
+        - [-1, -1]
+bin:
         - [-1, -1]
 bin_lid:
+        - [-1, -1]
+gate:
+        - [-1, -1]
+gate_earth:
+        - [-1, -1]
+gate_abydos:
         - [-1, -1]
